@@ -33,7 +33,7 @@
 
         <div class="page-wrapper">
 
-            <!-- Preloader -->
+            {{-- <!-- Preloader -->
             <div class="loader-wrap">
                 <div class="preloader">
                     <div class="preloader-close">x</div>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Preloader End -->
+            <!-- Preloader End --> --}}
 
             @yield('header')
 
@@ -94,7 +94,7 @@
                             <div class="sidebar-info-contents">
                                 <div class="content-inner">
                                     <div class="logo">
-                                        <a href="index.html"><img src="images/logo.png" alt=""
+                                        <a href="/"><img src="{{ asset('assets/images/logo.png') }}" alt=""
                                                 title=""></a>
                                     </div>
                                     <div class="content-box">
@@ -105,18 +105,17 @@
                                             <li>
                                                 <span class="icon flaticon-maps-and-flags"></span>
                                                 <strong>Our office</strong>
-                                                A-1, Envanto Headquarters, <br> Melbourne, Australia.
+                                                Simpang Pramuka, <br> Muaro Jambi, Jambi.
                                             </li>
                                             <li>
                                                 <span class="icon flaticon-call-1"></span>
                                                 <strong>Phone</strong>
-                                                <a href="tel:+00-999-999-9999">+(00) 999 999 9999</a><br>
-                                                <a href="tel:+000-000-0000">000 000 0000</a>
+                                                <a href="#">+(62) 8227651718</a><br>
                                             </li>
                                             <li>
                                                 <span class="icon flaticon-mail"></span>
                                                 <strong>Email</strong>
-                                                <a href="mailto:contact@bloxic.com">contact@Bloxic.com</a>
+                                                <a href="mailto:aramabel@gmail.com">aramabel@gmail.com</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -141,7 +140,7 @@
                     <div class="d-flex justify-content-center align-items-center flex-wrap">
                         <div class="copyright text-center"><span>&copy; 2023</span> UMKM Ara Mabel Jambi
                         </div>
-                        <div class="cards"><img src="images/icons/cards.png" alt="" /></div>
+                        <div class="cards"><img src="{{ asset('assest/images/icons/cards.png') }}" alt="" /></div>
                     </div>
                 </div>
 
@@ -156,7 +155,7 @@
     <div class="search-popup">
         <div class="color-layer"></div>
         <button class="close-search"><span class="fa fa-arrow-up"></span></button>
-        <form method="post" action="blog.html">
+        <form method="post" action="#">
             <div class="form-group">
                 <input type="search" name="search-field" value="" placeholder="Search Here"
                     required="">

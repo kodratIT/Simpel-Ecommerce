@@ -19,13 +19,13 @@
                                 </span>
                             </div>
                             <!-- Logo -->
-                        <div class="logo"><a href="/"><img src="{{ asset('assets/images/logo.png') }}" alt=""
-                                        title=""></a></div>
+                            <div class="logo"><a href="/"><img src="{{ asset('assets/images/logo.png') }}"
+                                        alt="" title=""></a></div>
                         </div>
 
                         <!-- Search Box -->
                         <div class="search-box">
-                            <form method="post" action="contact.html">
+                            {{-- <form method="post" action="/"> --}}
                                 <div class="form-group">
                                     <select name="currency" class="custom-select-box">
                                         <option>Search For Product</option>
@@ -33,7 +33,7 @@
                                             placeholder="Search Product" required>
                                         <button type="submit"><span class="icon fa fa-search"></span></button>
                                 </div>
-                            </form>
+                            {{-- </form> --}}
                         </div>
 
                         <!-- Options Box -->
@@ -77,15 +77,11 @@
                                 <span class="arrow flaticon-down-arrow"></span>
                             </div>
                             <ul class="categories-list">
-                                <li class="active"><a href="#"><span class="icon"><img
-                                                src="{{ asset('assets/images/icons/menu-icon-1.png') }}" alt="" /></span>court
-                                        cupboard</a></li>
-
-                                @for ($i = 0; $i < 8; $i++)
+                                @foreach ($categories as $category)
                                     <li><a href="#"><span class="icon"><img
-                                        src="{{ asset('assets/images/icons/menu-icon-3.png') }}"
-                                        alt="" /></span>platform rocker</a></li>
-                                @endfor
+                                                    src="{{ storageRoute($category->thumpnail) }}"
+                                                    alt="" /></span>{{ $category->name }}</a></li>
+                                @endforeach
 
                             </ul>
                         </div>
@@ -148,8 +144,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="/" title=""><img src="{{ asset('assets/images/logo-small.png') }}" alt=""
-                                    title=""></a>
+                            <a href="/" title=""><img src="{{ asset('assets/images/logo-small.png') }}"
+                                    alt="" title=""></a>
                         </div>
 
                         <!-- Right Col -->
@@ -174,15 +170,14 @@
                 <div class="menu-backdrop"></div>
                 <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
                 <nav class="menu-box">
-                    <div class="nav-logo"><a href="index.html"><img
-                                src="{{ asset('assets/images/mobile-logo.png') }}" alt=""
-                                title=""></a></div>
+                    <div class="nav-logo"><a href="index.html"><img src="{{ asset('assets/images/mobile-logo.png') }}"
+                                alt="" title=""></a></div>
                     <!-- Search -->
                     <div class="search-box">
                         <form method="post" action="contact.html">
                             <div class="form-group">
-                                <input type="search" name="search-field" value=""
-                                    placeholder="SEARCH HERE" required>
+                                <input type="search" name="search-field" value="" placeholder="SEARCH HERE"
+                                    required>
                                 <button type="submit"><span class="icon flaticon-search-1"></span></button>
                             </div>
                         </form>
@@ -198,8 +193,8 @@
         <!-- End Main Header -->
     @endsection
     @section('content')
-          <!-- Main Section Three -->
-          <section class="main-slider-three">
+        <!-- Main Section Three -->
+        <section class="main-slider-three">
             <div class="auto-container">
                 <div class="inner-container">
                     <div class="main-slider-carousel owl-carousel owl-theme">
@@ -351,13 +346,12 @@
                     <div class="filter-list row clearfix">
 
                         <!-- Shop Item Three -->
-                        @for ($i = 0; $i < 6; $i++)
+                        @foreach ($products as $product)
                             <div class="shop-item-three mix music sports col-xl-4 col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-box">
                                     <div class="image">
-                                        <a href="shop-detail.html"><img
-                                                src="{{ asset('assets/images/resource/products/29.png') }}"
-                                                alt="" /></a>
+                                        <a href="{{ route('detail', $product->id) }}"><img
+                                                src="{{ storageRoute($product->cover) }}" alt="" /></a>
                                     </div>
                                     <div class="content">
                                         <div class="rating">
@@ -367,18 +361,21 @@
                                             <span class="fa fa-star"></span>
                                             <span class="fa fa-star"></span>
                                         </div>
-                                        <h6><a href="shop-detail.html">masks 95 percent 0.3-μm particles</a></h6>
+                                        <h6><a href="{{ route('detail', $product->id) }}">{{ $product->name }}</a></h6>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="price"><span>$23.52</span> $62.00</div>
+                                            <div class="price">
+                                                <span>{{ rupiahx2($product->price) }}</span>{{ rupiah($product->price) }}
+                                            </div>
                                         </div>
 
-                                        <div class="select-amount clearfix">
-                                            <a href="#" class="select-box btn btn-info">Detail</a>
+                                        <div class="select-amount clearfix mt-4 text-center">
+                                            <a href="{{ route('detail', $product->id) }}"
+                                                class="select-box btn btn-info">Detail</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endfor
+                        @endforeach
 
 
 
@@ -386,47 +383,46 @@
                 </div>
             </div>
         </section>
-        <!-- End Products Section Three -->
 
         <!-- Products Section Six -->
         <section class="products-section-six">
             <div class="auto-container">
                 <!-- Sec Title -->
                 <div class="sec-title">
-                    <h4><span>Product </span> For You !</h4>
+                    <h4><span>Populer</span> Products For You !</h4>
                 </div>
                 <div class="row clearfix">
-
-                    @for ($i = 0; $i < 12; $i++)
-                    <!-- Shop Item Two -->
-                    <div class="shop-item-two col-lg-3 col-md-6 col-sm-12">
-                        <div class="inner-box">
-                            <div class="image">
-                                <a href="shop-detail.html"><img
-                                        src="{{ asset('assets/images/resource/products/25.png') }}"
-                                        alt="" /></a>
-                                <div class="options-box">
-                                    <ul class="option-list">
-                                        <li><a class="flaticon-resize" href="shop-detail.html"></a></li>
-
-                                    </ul>
+                    @foreach ($products as $product)
+                        <!-- Shop Item Two -->
+                        <div class="shop-item-two col-lg-3 col-md-6 col-sm-12">
+                            <div class="inner-box">
+                                <div class="image">
+                                    <a href="{{ route('detail', $product->id) }}"><img
+                                            src="{{ storageRoute($product->cover) }}" alt=""
+                                            style="height: 300px" /></a>
+                                    <div class="options-box">
+                                        <ul class="option-list">
+                                            <li><a class="flaticon-resize" href="{{ route('detail', $product->id) }}"></a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="content">
-                                <h6><a href="shop-detail.html">masks 95 percent 0.3-μm <br> particles</a></h6>
-                                <div class="lower-box">
-                                    <div class="price"><span>$239.52</span> $362.00</div>
+                                <div class="content">
+                                    <h6><a href="{{ route('detail', $product->id) }}">{{ $product->name }}</a></h6>
+                                    <div class="lower-box">
+                                        <div class="price"><span>{{ rupiahx2($product->price) }}</span>
+                                            {{ rupiah($product->price) }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endfor
+                    @endforeach
+
 
                 </div>
 
             </div>
         </section>
-        <!-- End Products Section Six -->
 
         <!-- Testimonial Section Three -->
         <section class="testimonial-section-three">
@@ -441,7 +437,7 @@
                                 <div class="arrow-layer" style="background-image: url(images/icons/arrow-2.png)">
                                 </div>
                                 <div class="image">
-                                    <img src="{{ asset('assets/images/gallery/testimonial.jpg')}}" alt="" />
+                                    <img src="{{ asset('assets/images/gallery/testimonial.jpg') }}" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -459,7 +455,9 @@
                                             <span class="fa fa-star"></span>
                                             <span class="fa fa-star"></span>
                                         </div>
-                                        <div class="text">Furniture dari toko ini benar-benar mempercantik rumah saya. Desainnya modern, dan materialnya tahan lama. Pelayanannya juga sangat baik, responsif, dan profesional.</div>
+                                        <div class="text">Furniture dari toko ini benar-benar mempercantik rumah saya.
+                                            Desainnya modern, dan materialnya tahan lama. Pelayanannya juga sangat baik,
+                                            responsif, dan profesional.</div>
                                         <div class="quote-icon flaticon-quote"></div>
                                     </div>
                                     <!-- Slide -->
@@ -471,7 +469,10 @@
                                             <span class="fa fa-star"></span>
                                             <span class="fa fa-star"></span>
                                         </div>
-                                        <div class="text">Pengalaman berbelanja furniture di sini luar biasa. Produknya unik, harga terjangkau, dan pelayanannya sangat ramah. Sangat merekomendasikan kepada semua yang mencari perabotan berkualitas.</div>
+                                        <div class="text">Pengalaman berbelanja furniture di sini luar biasa. Produknya
+                                            unik,
+                                            harga terjangkau, dan pelayanannya sangat ramah. Sangat merekomendasikan kepada
+                                            semua yang mencari perabotan berkualitas.</div>
                                         <div class="quote-icon flaticon-quote"></div>
                                     </div>
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Pages\Home;
+use App\Livewire\Pages\ProductDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('livewire.pages.home');
-});
+Route::get('/',[Home::class,'render']);
 Route::get('/about', function () {
     return view('livewire.pages.about');
 });
 Route::get('/contact', function () {
     return view('livewire.pages.contact');
 });
-Route::get('/product-detail/{id}', function () {
-    return view('livewire.pages.product-detail');
-});
+Route::get('/product-detail/{id}',[ProductDetail::class,'render'])->name('detail');
